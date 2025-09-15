@@ -1,29 +1,39 @@
 <template>
-  <label class="inline-flex items-center cursor-pointer">
-    <input
-      type="checkbox"
-      class="sr-only peer"
-      :checked="modelValue"
-      :disabled="disabled"
-      @change="$emit('update:modelValue', $event.target.checked)"
-    >
-    <div 
-      class="w-10 h-5 bg-ohos-bg-tertiary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-ohos-primary transition-colors"
-      :class="disabled ? 'opacity-60' : ''"
+  <div
+      class="relative w-12 h-6 rounded-ohos-full cursor-pointer transition-all duration-ohos ease-ohos"
+      :class="[
+          modelValue ? 'bg-ohos-primary' : 'bg-ohos-bg-tertiary',
+          disabled ? 'opacity-50 cursor-not-allowed' : ''
+        ]"
+      @click="handleToggle"
+  >
+    <!-- 开关圆点 -->
+    <div
+        class="absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform duration-ohos ease-ohos"
+        :class="modelValue ? 'translate-x-6' : ''"
     ></div>
-  </label>
+  </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { defineProps, defineEmits } from 'vue'
 
-const props = defineProps<{
-  modelValue: boolean
-  disabled?: boolean
-}>()
+const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    default: false
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  }
+})
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: boolean): void
-}>()
+const emit = defineEmits(['update:modelValue'])
+
+const handleToggle = () => {
+  if (!props.disabled) {
+    emit('update:modelValue', !props.modelValue)
+  }
+}
 </script>
-    

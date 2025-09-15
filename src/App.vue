@@ -74,8 +74,12 @@
               <OhosSwitch v-model="disabledSwitchValue" disabled/>
               <span class="ml-ohos-2 text-ohos-sm">禁用开关</span>
             </div>
+
+            <div class="button"></div>
+            <OhosDialog closable title="我是标题啊" v-model="switchValue"></OhosDialog>
           </div>
         </div>
+
       </section>
 
       <!-- 选择器和标签组件 -->
@@ -143,6 +147,27 @@
               @error="handleUploadError"
           />
         </div>
+      </section>
+
+      <section class="mb-ohos-8">
+        <OhosCard header="我是标题">
+          我可能是内容
+          <OhosAvatar
+              src="https://picsum.photos/id/1/200"
+              name="张三"
+              size="small"
+              status="online"
+          />
+          <div slot="footer" class="mt-ohos-4 pt-ohos-3 border-t border-ohos-bg-tertiary flex justify-end gap-ohos-3">
+            <OhosButton type="text" size="small">取消</OhosButton>
+            <OhosButton type="primary" size="small">确认</OhosButton>
+          </div>
+        </OhosCard>
+      </section>
+
+      <section class="mb-ohos-8">
+        <OhosCalendar></OhosCalendar>
+        <OhosDateTimePicker type="date"></OhosDateTimePicker>
       </section>
 
       <!-- 图片查看器 + 头像组件 -->
@@ -257,6 +282,11 @@ import OhosRow from './components/layout/OhosRow.vue'
 import OhosCol from './components/layout/OhosCol.vue'
 import OhosContainer from './components/layout/OhosContainer.vue'
 import OhosDivider from './components/layout/OhosDivider.vue'
+import OhosCalendar from "@/components/date/OhosCalendar.vue";
+import OhosDatePicker from "@/components/date/OhosDatePicker.vue";
+import OhosDateTimePicker from "@/components/date/OhosDateTimePicker.vue";
+import OhosCard from "@/components/layout/OhosCard.vue";
+import OhosDialog from "@/components/base/OhosDialog.vue";
 
 // 输入框示例数据
 const inputValue = ref('')
